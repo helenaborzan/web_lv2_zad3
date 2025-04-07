@@ -12,6 +12,12 @@ app.get('/', (req, res) => {
   res.render('slike', { images });
 });
 
+app.get('/slike', (req, res) => {
+    const dataPath = path.join(__dirname, 'images.json');
+    const images = JSON.parse(fs.readFileSync(dataPath));
+    res.render('slike', { images });
+  });
+  
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server pokrenut na portu ${PORT}`);

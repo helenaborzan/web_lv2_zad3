@@ -14,9 +14,9 @@
   <nav aria-labelledby="prosirena-navigacija">
     <h2 id="prosirena-navigacija">Navigacija</h2>
     <ul>
-      <li><a href="index.html">Pocetna</a></li>
-      <li><a href="grafikon.html">Grafikon</a></li>
-      <li><a href="slike.html">Slike</a></li>
+      <li><a href="/">Pocetna</a></li>
+      <li><a href="/grafikon">Grafikon</a></li>
+      <li><a href="/slike">Slike</a></li>
     </ul>
   </nav>
 
@@ -25,6 +25,7 @@
     
     <% images.forEach((image, index) => { %>
       <figure class="galerija_slika">
+        <!-- Lightbox link -->
         <a href="#lightbox-<%= index + 1 %>">
           <img src="<%= image.url %>" alt="<%= image.title %>" loading="lazy">
         </a>
@@ -33,7 +34,23 @@
     <% }) %>
   </section>
 
+  <!-- Lightbox Modals -->
+  <% images.forEach((image, index) => { 
+      const prev = index === 0 ? images.length : index;
+      const next = index === images.length - 1 ? 1 : index + 2;
+  %>
+    <div id="lightbox-<%= index + 1 %>" class="lightbox">
+      <figure>
+        <img src="<%= image.url %>" alt="<%= image.title %>">
+        <figcaption><%= image.title %></figcaption>
+      </figure>
+      <!-- Previous and next controls -->
+      <a href="#lightbox-<%= prev %>" class="prev">&lt;</a>
+      <a href="#lightbox-<%= next %>" class="next">&gt;</a>
+      <!-- Close button -->
+      <a href="#" class="close">X</a>
+    </div>
+  <% }) %>
 
 </body>
 </html>
-

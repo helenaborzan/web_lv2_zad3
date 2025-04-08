@@ -2,18 +2,38 @@
 <html lang="hr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Helena Borzan">
+  <meta name="keywords" content="HTML, CSS, Web programming, galerija, slike, lightbox">
+  <meta name="description" content="Galerija slika s lightbox funkcionalnosti bez JavaScripta">
+  <link rel="stylesheet" href="/style_slike.css"> <!-- Make sure this file is in your public folder -->
   <title>Galerija slika</title>
-  <link rel="stylesheet" href="/style/style.css">
 </head>
 <body>
-  <h1>Galerija slika</h1>
-  <section class="gallery">
-    <% images.forEach(image => { %>
-      <figure>
-        <img src="<%= image.url %>" alt="<%= image.title %>">
+
+  <nav aria-labelledby="prosirena-navigacija">
+    <h2 id="prosirena-navigacija">Navigacija</h2>
+    <ul>
+      <li><a href="index.html">Pocetna</a></li>
+      <li><a href="grafikon.html">Grafikon</a></li>
+      <li><a href="slike.html">Slike</a></li>
+    </ul>
+  </nav>
+
+  <section class="galerija">
+    <h1>Galerija slika</h1>
+    
+    <% images.forEach((image, index) => { %>
+      <figure class="galerija_slika">
+        <a href="#lightbox-<%= index + 1 %>">
+          <img src="<%= image.url %>" alt="<%= image.title %>" loading="lazy">
+        </a>
         <figcaption><%= image.title %></figcaption>
       </figure>
     <% }) %>
   </section>
+
+
 </body>
 </html>
+
